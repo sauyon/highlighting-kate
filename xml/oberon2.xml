@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE language SYSTEM "language.dtd">
-<language name="Oberon-2" version="1.00" kateversion="3.4" section="Sources" extensions="*.m" author="Sauyon Lee" license="GPL">
+<language name="Oberon-2" version="1.00" kateversion="3.4" section="Sources" indenter="cstyle" extensions="*.m" author="Sauyon Lee" license="GPL">
 	<highlighting>
 		<list name="keywords">
 			<item>ARRAY</item>
@@ -47,21 +47,25 @@
 			<item>SET</item>
 		</list>
     <list name="builtin">
-      <item>append</item>
-      <item>cap</item>
-      <item>close</item>
-      <item>complex</item>
-      <item>copy</item>
-      <item>delete</item>
-      <item>imag</item>
-      <item>len</item>
-      <item>make</item>
-      <item>new</item>
-      <item>panic</item>
-      <item>print</item>
-      <item>println</item>
-      <item>real</item>
-      <item>recover</item>
+      <item>ABS</item>
+      <item>ASH</item>
+      <item>CAP</item>
+      <item>CHR</item>
+      <item>ENTIER</item>
+      <item>LEN</item>
+      <item>LONG</item>
+      <item>MAX</item>
+      <item>MIN</item>
+      <item>ODD</item>
+      <item>ORD</item>
+      <item>SHORT</item>
+      <item>SIZE</item>
+      <item>ASSERT</item>
+      <item>COPY</item>
+      <item>DEC</item>
+      <item>HALT</item>
+      <item>INC</item>
+      <item>NEW</item>
     </list>
     <list name="predeclared">
 			<item>NIL</item>
@@ -75,11 +79,13 @@
 				<keyword attribute="Data Type" context="#stay" String="types"       />
         <keyword attribute="Builtin Function" context="#stay" String="builtin"  />
         <DetectIdentifier />
-				<DetectChar attribute="String" context="string" char="&quot;" />
+        <StringDetect attribute="Keyword" context="#stay" String="BEGIN" beginRegion="Brace1" />
+        <StringDetect attribute="Keyword" context="#stay" String="END" endRegion="Brace1"   />
         <Detect2Chars attribute="Comment" context="Commentar" char="(" char1="*"   />
         <Int attribute="Decimal" context="#stay" />
         <Float attribute="Float" context="#stay" />
         <HlCChar attribute="Char" context="#stay" />
+				<DetectChar attribute="String" context="string" char="&quot;" />
         <AnyChar attribute="Symbol" context="#stay" String=":!%&amp;()+,-/.*&lt;=&gt;?[]|~^&#59;"/>
 			</context>
 
@@ -91,7 +97,7 @@
 
 			<context attribute="Comment" lineEndContext="#stay" name="Commentar">
 				<DetectSpaces />
-        <Detect2Chars attribute="Comment" context="#pop" char="*" char1="/" endRegion="Comment"/>
+        <Detect2Chars attribute="Comment" context="#pop" char="*" char1=")" endRegion="Comment"/>
         <IncludeRules context="##Alerts" />
         <DetectIdentifier />
       </context>
