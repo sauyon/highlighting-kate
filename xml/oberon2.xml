@@ -78,7 +78,7 @@
 	</highlighting>
 	<general>
 		<comments>
-			<comment name="multiLine" start="(*" end="*)"/>
+			<comment name="multiLine" start="(*" end="*)" region="Comment"/>
 		</comments>
 		<keywords casesensitive="1"/>
 	</general>
