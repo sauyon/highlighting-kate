@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE language SYSTEM "language.dtd">
+<language name="Oberon-2" version="1.00" kateversion="3.4" section="Sources" extensions="*.m" author="Sauyon Lee" license="GPL">
+	<highlighting>
+		<list name="keywords">
+			<item>ARRAY</item>
+			<item>BEGIN</item>
+			<item>BY</item>
+			<item>CASE</item>
+			<item>CONST</item>
+			<item>DIV</item>
+			<item>DO</item>
+			<item>ELSE</item>
+			<item>ELSIF</item>
+			<item>END</item>
+			<item>EXIT</item>
+			<item>FOR</item>
+			<item>IF</item>
+			<item>IMPORT</item>
+			<item>IN</item>
+			<item>IS</item>
+			<item>LOOP</item>
+			<item>MOD</item>
+			<item>MODULE</item>
+			<item>NIL</item>
+			<item>OF</item>
+			<item>OR</item>
+			<item>POINTER</item>
+			<item>PROCEDURE</item>
+			<item>RECORD</item>
+			<item>REPEAT</item>
+			<item>RETURN</item>
+			<item>THEN</item>
+			<item>TO</item>
+			<item>TYPE</item>
+			<item>UNTIL</item>
+			<item>VAR</item>
+			<item>WHILE</item>
+			<item>WITH</item>
+		</list>
+		<list name="types">
+			<item>BOOLEAN</item>
+			<item>CHAR</item>
+			<item>SHORTINT</item>
+			<item>INTEGER</item>
+			<item>LONGINT</item>
+			<item>REAL</item>
+			<item>LONGREAL</item>
+			<item>SET</item>
+		</list>
+		<contexts>
+			<context attribute="Normal Text" lineEndContext="#stay" name="Normal Text" >
+				<keyword attribute="Keyword" context="#stay" String="keywords" />
+        <keyword attribute="Data Type" context="#stay" String="types"       />
+				<DetectChar attribute="String" context="string" char="&quot;" />
+        <Int attribute="Decimal" context="#stay" />
+        <Float attribute="Float" context="#stay" />
+        <HlCChar attribute="Char" context="#stay" />
+        <AnyChar attribute="Symbol" context="#stay" String=":!%&amp;()+,-/.*&lt;=&gt;?[]|~^&#59;"/>
+			</context>
+			<context attribute="String" lineEndContext="#pop" name="String">
+        <LineContinue  attribute="String" context="#stay" />
+        <HlCStringChar attribute="String Char" context="#stay" />
+        <DetectChar    attribute="String" context="#pop" char="&quot;" />
+      </context>
+		</contexts>
+		<itemDatas>
+      <itemData name="Normal Text"  defStyleNum="dsNormal"   spellChecking="false"/>
+      <itemData name="Keyword"      defStyleNum="dsKeyword"  spellChecking="false"/>
+      <itemData name="Data Type"    defStyleNum="dsDataType" spellChecking="false"/>
+      <itemData name="String Char"  defStyleNum="dsChar"    />
+      <itemData name="String"       defStyleNum="dsString"  />
+      <itemData name="Comment"      defStyleNum="dsComment" />
+      <itemData name="Decimal"      defStyleNum="dsDecVal" spellChecking="false"/>
+      <itemData name="Float"        defStyleNum="dsFloat" spellChecking="false"/>
+      <itemData name="Char"         defStyleNum="dsChar"   spellChecking="false"/>
+    </itemDatas>
+
+	</highlighting>
+	<general>
+		<comments>
+			<comment name="multiLine" start="(*" end="*)"/>
+		</comments>
+		<keywords casesensitive="1"/>
+	</general>
+</language>
