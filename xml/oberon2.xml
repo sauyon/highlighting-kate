@@ -21,7 +21,6 @@
 			<item>LOOP</item>
 			<item>MOD</item>
 			<item>MODULE</item>
-			<item>NIL</item>
 			<item>OF</item>
 			<item>OR</item>
 			<item>POINTER</item>
@@ -47,25 +46,62 @@
 			<item>LONGREAL</item>
 			<item>SET</item>
 		</list>
+    <list name="builtin">
+      <item>append</item>
+      <item>cap</item>
+      <item>close</item>
+      <item>complex</item>
+      <item>copy</item>
+      <item>delete</item>
+      <item>imag</item>
+      <item>len</item>
+      <item>make</item>
+      <item>new</item>
+      <item>panic</item>
+      <item>print</item>
+      <item>println</item>
+      <item>real</item>
+      <item>recover</item>
+    </list>
+    <list name="predeclared">
+			<item>NIL</item>
+      <item>TRUE</item>
+      <item>FALSE</item>
+    </list>
 		<contexts>
 			<context attribute="Normal Text" lineEndContext="#stay" name="Normal Text" >
 				<keyword attribute="Keyword" context="#stay" String="keywords" />
-        <keyword attribute="Data Type" context="#stay" String="types"       />
+				<keyword attribute="Predeclared Identifier" context="#stay" String="predeclared"  />
+				<keyword attribute="Data Type" context="#stay" String="types"       />
+        <keyword attribute="Builtin Function" context="#stay" String="builtin"  />
+        <DetectIdentifier />
 				<DetectChar attribute="String" context="string" char="&quot;" />
+        <Detect2Chars attribute="Comment" context="Commentar" char="(" char1="*"   />
         <Int attribute="Decimal" context="#stay" />
         <Float attribute="Float" context="#stay" />
         <HlCChar attribute="Char" context="#stay" />
         <AnyChar attribute="Symbol" context="#stay" String=":!%&amp;()+,-/.*&lt;=&gt;?[]|~^&#59;"/>
 			</context>
+
 			<context attribute="String" lineEndContext="#pop" name="String">
         <LineContinue  attribute="String" context="#stay" />
         <HlCStringChar attribute="String Char" context="#stay" />
         <DetectChar    attribute="String" context="#pop" char="&quot;" />
       </context>
+
+			<context attribute="Comment" lineEndContext="#stay" name="Commentar">
+				<DetectSpaces />
+        <Detect2Chars attribute="Comment" context="#pop" char="*" char1="/" endRegion="Comment"/>
+        <IncludeRules context="##Alerts" />
+        <DetectIdentifier />
+      </context>
+
 		</contexts>
 		<itemDatas>
       <itemData name="Normal Text"  defStyleNum="dsNormal"   spellChecking="false"/>
       <itemData name="Keyword"      defStyleNum="dsKeyword"  spellChecking="false"/>
+      <itemData name="Predeclared Identifier" defStyleNum="dsOthers"   spellChecking="false" />
+      <itemData name="Builtin Function"       defStyleNum="dsFunction" spellChecking="false" />
       <itemData name="Data Type"    defStyleNum="dsDataType" spellChecking="false"/>
       <itemData name="String Char"  defStyleNum="dsChar"    />
       <itemData name="String"       defStyleNum="dsString"  />
@@ -73,6 +109,7 @@
       <itemData name="Decimal"      defStyleNum="dsDecVal" spellChecking="false"/>
       <itemData name="Float"        defStyleNum="dsFloat" spellChecking="false"/>
       <itemData name="Char"         defStyleNum="dsChar"   spellChecking="false"/>
+      <itemData name="Symbol"       defStyleNum="dsNormal" spellChecking="false"/>
     </itemDatas>
 
 	</highlighting>
@@ -80,6 +117,6 @@
 		<comments>
 			<comment name="multiLine" start="(*" end="*)" region="Comment"/>
 		</comments>
-		<keywords casesensitive="1"/>
+    <keywords casesensitive="1" additionalDeliminator="'&quot;" />
 	</general>
 </language>
